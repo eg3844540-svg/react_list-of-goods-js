@@ -21,18 +21,36 @@ export const App = () => {
   const [isReversed, setIsReversed] = useState(false);
 
   const sortAlphabetically = () => {
-    setGoods([...goods].sort());
+    const sortedGoods = [...goodsFromServer].sort();
+
+    // eslint-disable-next-line prettier/prettier
+    setGoods(
+      isReversed
+        ? sortedGoods.reverse()
+        : sortedGoods,
+    );
+
     setSortType('alphabet');
   };
 
   const sortByLength = () => {
-    setGoods([...goods].sort((a, b) => a.length - b.length));
+    const sortedGoods = [...goodsFromServer]
+      // eslint-disable-next-line prettier/prettier
+      .sort((a, b) => a.length - b.length);
+
+    // eslint-disable-next-line prettier/prettier
+    setGoods(
+      isReversed
+        ? sortedGoods.reverse()
+        : sortedGoods,
+    );
+
     setSortType('length');
   };
 
   const reverseGoods = () => {
     setGoods([...goods].reverse());
-    setIsReversed(!isReversed);
+    setIsReversed(prev => !prev);
   };
 
   const resetGoods = () => {
@@ -78,7 +96,7 @@ export const App = () => {
         {(sortType || isReversed) && (
           <button
             type="button"
-            className="button is-danger"
+            className="button is-danger is-light"
             onClick={resetGoods}
           >
             Reset
@@ -88,7 +106,11 @@ export const App = () => {
 
       <ul>
         {goods.map(good => (
-          <li key={good} data-cy="Good">
+          // eslint-disable-next-line prettier/prettier
+          <li
+            key={good}
+            data-cy="Good"
+          >
             {good}
           </li>
         ))}
