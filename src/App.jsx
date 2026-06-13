@@ -24,11 +24,7 @@ export const App = () => {
     const sortedGoods = [...goodsFromServer].sort();
 
     // eslint-disable-next-line prettier/prettier
-    setGoods(
-      isReversed
-        ? sortedGoods.reverse()
-        : sortedGoods,
-    );
+    setGoods(isReversed ? sortedGoods.reverse() : sortedGoods);
 
     setSortType('alphabet');
   };
@@ -39,11 +35,7 @@ export const App = () => {
       .sort((a, b) => a.length - b.length);
 
     // eslint-disable-next-line prettier/prettier
-    setGoods(
-      isReversed
-        ? sortedGoods.reverse()
-        : sortedGoods,
-    );
+    setGoods(isReversed ? sortedGoods.reverse() : sortedGoods);
 
     setSortType('length');
   };
@@ -85,9 +77,7 @@ export const App = () => {
         <button
           type="button"
           // eslint-disable-next-line prettier/prettier
-          className={`button is-warning ${
-            isReversed ? '' : 'is-light'
-          }`}
+          className={`button is-warning ${isReversed ? '' : 'is-light'}`}
           onClick={reverseGoods}
         >
           Reverse
@@ -107,10 +97,7 @@ export const App = () => {
       <ul>
         {goods.map(good => (
           // eslint-disable-next-line prettier/prettier
-          <li
-            key={good}
-            data-cy="Good"
-          >
+          <li key={good} data-cy="Good">
             {good}
           </li>
         ))}
